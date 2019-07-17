@@ -1,12 +1,34 @@
-import { Component } from '@angular/core';
+import { HttpService } from '../http.service';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  constructor() {}
+	results: Observable<any>;
+	searchTerm: string = '';
+
+  constructor(private httpService:HttpService) {}
+
+weathers
+city
+
+  ngOnInit(){ }
+
+
+
+  searchChanged(){
+    console.log('change')
+  	 this.httpService.searchData(this.searchTerm).subscribe(resp=>{
+      console.log(resp)
+      this.weathers = resp['list']
+    })
+  }
+
+
 
 }
