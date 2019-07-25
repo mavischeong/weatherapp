@@ -24,7 +24,7 @@
 		<p>{{weather.temp.day -273.15 | number:'0.2-2'}} &deg; C</p>
 		<p>{{weather.weather[0].description}}</p>
 	</ion-label>
-	<ion-button fill="outline" slot="end">View Details</ion-button>
+	<ion-button fill="outline" slot="end" routerLink="/details/{{place}}/{{weather.dt}}">View Details</ion-button>
 </ion-item>
 </ion-list>
 

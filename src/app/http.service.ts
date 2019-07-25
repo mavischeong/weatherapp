@@ -19,7 +19,9 @@ export class HttpService {
 
   getWeatherByGeo (long,lat){
     return this.httpClient.get(
-      `${this.baseUrl}lat=${lat}&lon=${long}${this.apiKey}`)
+      `${this.baseUrl}lat=${lat}&lon=${long}${this.apiKey}`).pipe(tap(resp=>{
+        this.weathers=resp["list"]
+      }))
   }
 
   searchData(title:string): Observable<any>{

@@ -10,8 +10,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 })
 export class HomePage implements OnInit {
 
-	results: Observable<any>;
-	searchTerm: string = '';
+  results: Observable<any>;
+  searchTerm: string = '';
 
   constructor(private httpService:HttpService,
     private geolocation:Geolocation) {}
@@ -25,29 +25,27 @@ export class HomePage implements OnInit {
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log(resp.coords.latitude)
       console.log(resp.coords.longitude)
-     this.httpService.getWeatherByGeo(resp.coords.longitude,
-       resp.coords.latitude).subscribe(resp=>{
-         console.log(resp)
-         this.weathers= resp["list"]
-         this.place = resp["city"]
-       })
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
+      this.httpService.getWeatherByGeo(resp.coords.longitude,
+        resp.coords.latitude).subscribe(resp=>{
+          console.log(resp)
+          this.weathers= resp["list"]
+          this.place = resp["city"]
+        })
+      }).catch((error) => {
+        console.log('Error getting location', error);
+      });
+
+    }
+
+    searchChanged(){
+      console.log('change')
+      this.httpService.searchData(this.searchTerm).subscribe(resp=>{
+        console.log(resp)
+        this.weathers = resp['list']
+        this.place = resp ['city']
+      })
+    }
+
+
 
   }
-
-
-
-  searchChanged(){
-    console.log('change')
-    this.httpService.searchData(this.searchTerm).subscribe(resp=>{
-      console.log(resp)
-      this.weathers = resp['list']
-      this.place = resp ['city']
-    })
-  }
-
-
-
-}
