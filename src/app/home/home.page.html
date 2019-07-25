@@ -19,12 +19,12 @@
 		<img src="https://openweathermap.org/img/w/{{weather.weather[0].icon}}.png">
 	</ion-avatar>
 	<ion-label>
-		<h2>{{city}}</h2>
+		<h2>{{place.name}}</h2>
 		<h5>{{weather.dt*1000 | date:'medium'}}</h5>
 		<p>{{weather.temp.day -273.15 | number:'0.2-2'}} &deg; C</p>
 		<p>{{weather.weather[0].description}}</p>
 	</ion-label>
-	<ion-button fill="outline" slot="end" routerLink="/details">View Details</ion-button>
+	<ion-button fill="outline" slot="end">View Details</ion-button>
 </ion-item>
 </ion-list>
 

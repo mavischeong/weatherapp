@@ -9,18 +9,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailsPage implements OnInit {
 
-	information = null;
+	city
+	weather
 
   constructor(private activatedRoute:ActivatedRoute,
   	private httpService:HttpService) { }
 
-  ngOnInit() {
+  ngOnInit() { //if i need to bring out the data, then we put out the variable (city) and the no need to write "let" inside the ngOnInit. 
+  				//if i do not need to bring out the data; like in this case, we do not need to bring out the date, we write "let" inside.
 
-  	let date = this.activatedRoute.snapshot.paramMap.get('weather.dt');
+  	this.city = this.activatedRoute.snapshot.paramMap.get('city');
 
-  	this.httpService.getWeathers(date).subscribe(result =>{
-  		this.information = result;
-  	})
+  	let timestamp = this.activatedRoute.snapshot.paramMap.get('timestamp');
+
+  	this.weather = this.httpService.getWeatherByTimestamp(timestamp);
   }
 
 }
